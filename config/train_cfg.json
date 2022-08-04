@@ -1,0 +1,8 @@
+{
+    "project": "leopard",
+    "loss": "sparse_categorical_crossentropy",
+    "optimizer": "adam",
+    "metric": "sparse_categorical_accuracy",
+    "epochs": 5,
+    "batch_size": 128
+}

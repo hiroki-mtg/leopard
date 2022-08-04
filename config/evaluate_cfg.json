@@ -1,0 +1,5 @@
+{
+    "project_name": "leopard",
+    "model_name": "convnet:latest",
+    "test_data": "artifacts/mnist:v0/test.npz"
+}
