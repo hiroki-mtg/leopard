@@ -1,3 +1,5 @@
+from codecs import BOM_BE
+from unittest.util import three_way_cmp
 import tensorflow as tf
 import wandb
 from wandb.keras import WandbCallback
@@ -5,7 +7,7 @@ from wandb.keras import WandbCallback
 
 def train_model(
     model,
-    train, val,
+    train, val, test,
     project,
     loss, optimizer, metric,
     epochs, batch_size
@@ -31,12 +33,25 @@ def train_model(
         callbacks=[WandbCallback()]
         )
 
+    loss, accuracy = model.evaluate(test.x, test.y)
+    model.save('my_model')
+
+
+
+    import numpy as np
     artifact = wandb.Artifact(
         name='convnet',
         type = 'model',
-        description='Trained convnet model'
+        description='Trained convnet model',
+        metadata={
+            'epochs': epochs,
+            'test loss': loss,
+            'test accuracy': accuracy
+            
+        },
+
     )
 
-    model.save('my_model')
+
     artifact.add_dir('my_model')
     run.log_artifact(artifact)

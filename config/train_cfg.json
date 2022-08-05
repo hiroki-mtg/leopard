@@ -3,6 +3,6 @@
     "loss": "sparse_categorical_crossentropy",
     "optimizer": "adam",
     "metric": "sparse_categorical_accuracy",
-    "epochs": 5,
+    "epochs": 20,
     "batch_size": 128
 }
